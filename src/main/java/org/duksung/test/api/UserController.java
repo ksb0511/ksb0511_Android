@@ -1,6 +1,10 @@
 package org.duksung.test.api;
 
+import org.duksung.test.model.DefaultRes;
 import org.duksung.test.model.User;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
@@ -27,6 +31,9 @@ public class UserController {
             return "없습니다.";
         else
             return userList.toString();
+
+
+
     }
 
     @GetMapping("/users/{user_idx}")
@@ -35,9 +42,12 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public String postUserList(@RequestBody final User user) {
-        userList.add(user);
-        return user.getName()+"저장했습니다.";
+    public ResponseEntity postUserList(@RequestBody final User user) {
+          userList.add(user);
+//        return new ResponseEntity("123456789",HttpStatus.BAD_REQUEST);
+         DefaultRes defaultRes = new DefaultRes<>();
+        //defaultRes.res("123");
+        return new ResponseEntity(defaultRes.res(user.getName()), HttpStatus.OK);
     }
 
     @PutMapping("/users/{user_idx}")
