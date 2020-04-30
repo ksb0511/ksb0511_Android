@@ -14,6 +14,8 @@ public class DefaultRes<T> {
 
     //Response TestData
     private T responseData;
+    private T responseData1;
+    private T responseData2;
 
     public static<T> DefaultRes<T> res() {
         return res(null);
@@ -24,4 +26,5 @@ public class DefaultRes<T> {
                 .responseData(t)
                 .build();
     }
+
 }

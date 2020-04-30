@@ -27,10 +27,15 @@ public class UserController {
 //        else
 //            return "없습니다.";
 
+//        getUserList(name, part);
+//        DefaultRes defaultRes = new DefaultRes<>();
+//        return new ResponseEntity(defaultRes.res(userList.toString()), HttpStatus.OK);
+
+//            return
         if(userList.size()==0)
             return "없습니다.";
         else
-            return userList.toString();
+            return "크기는 "+userList.size()+"이며, \n"+userList.toString();
 
 
 
@@ -54,16 +59,16 @@ public class UserController {
     public String putUserList(
             @PathVariable(value = "user_idx") final int user_idx,
             @RequestBody final User user) {
-        userList.remove(user);
-        userList.add(userList.size(),user);
+        userList.remove(user_idx);
+        userList.add(user);
         return "삭제하고 다시 저장했습니다.";
     }
 
 
     @DeleteMapping("/users/{user_idx}")
     public String deleteUserList(@PathVariable(value = "user_idx") final int user_idx) {
-        userList.remove(userList);
-        return "다 삭제해 버렸다^^";
+        userList.remove(user_idx);
+        return userList.toString()+"삭제해 버렸다^^";
     }
 
 }
